@@ -1,0 +1,3 @@
+- Clone the repo
+- Create package.json
+- add .gitignore
