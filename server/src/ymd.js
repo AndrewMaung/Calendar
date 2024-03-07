@@ -16,18 +16,6 @@ const isLeapYear = (year) => {
     return true;
   }
 };
-/**
- * Check days in year
- *
- * Dependency: isLeapYear
- *
- * @param {number} year
- * @returns {number} Numbers of days in given year
- */
-const daysInYear = (year) => {
-  var diy = isLeapYear(year) ? 366 : 365;
-  return diy;
-};
 
 /**
  * Getting days in months of a year.
@@ -169,6 +157,7 @@ const resObject = (year, month) => {
   return mObj;
 };
 /*
+Local Test
 input :
   year: 2024
   month: 2
