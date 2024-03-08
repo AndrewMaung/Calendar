@@ -202,3 +202,5 @@ output:
 }
  */
 
+console.log(resObject(2042, 3))
+
