@@ -123,7 +123,7 @@ const weekDaysArray = [
  * @param {number} month - The month (1-12).
  * @returns {Object} - An object representing the specified month.
  */
-const resObject = (year, month) => {
+const monthObject = (year, month) => {
   // Get the number of days in each month of the specified year
   const dimArray = getDaysInMonths(year);
 
@@ -152,6 +152,7 @@ const resObject = (year, month) => {
   const mObj = {
     id: monthToFind.id,
     name: monthToFind.name,
+    dim: monthToFind.days,
     days: daysObject,
   };
   return mObj;
@@ -201,6 +202,6 @@ output:
   ]
 }
  */
-
-console.log(resObject(2042, 3))
-
+// here not default
+// ES6 only one default export allowed
+export { monthObject, monthArray, weekDaysArray };

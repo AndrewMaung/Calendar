@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <style>
+      .mcal {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+      }
+      .day {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+    </style>
+    <script>
+      const mona = [
+        "",
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      function opt() {
+        const dt = new Date();
+        const yr = dt.getFullYear();
+        const mo = dt.getMonth() + 1;
+        let v = [];
+        for (let i = mo; i <= 12; i++) {
+          v.push(i);
+        }
+        let s = [];
+        if (mo !== 1) {
+          for (let i = mo - 1; i >= 1; i--) {
+            s.push(i);
+          }
+        }
+        const value = [...v, ...s];
+        document.getElementById("yform").innerHTML = `
+   <input type="number" name="year" value=${yr} id="year" />
+    <select name="month" id="month">
+    ${value
+      .map((i) => {
+        return `
+      <option value="${i}">${mona[i]}</option>
+      `;
+      })
+      .join("")}
+    </select>
+   `;
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <div id="loading"></div>
+      <form id="yform"></form>
+      <!-- <p id="y"></p>
+      <p id="m"></p> -->
+      <div id="mcal"></div>
+    </main>
+    <script>
+      opt();
+    </script>
+
+    <!-- API -->
+    <script>
+      let year;
+      let month;
+
+      const inputElement = document.getElementById("year");
+      inputElement.addEventListener("change", handleInputChange);
+      const selectElement = document.getElementById("month");
+      selectElement.addEventListener("change", handleSelectChange);
+      // ===========
+      document.addEventListener("DOMContentLoaded", function () {
+        year = inputElement.value;
+        month = selectElement.value;
+        setTimeout(async () => {
+          await api(year, month);
+        }, 2000);
+      });
+      function handleInputChange() {
+        year = inputElement.value;
+        setTimeout(async () => {
+          await api(year, month);
+        }, 2000);
+      }
+      function handleSelectChange() {
+        month = selectedValue = selectElement.value;
+        setTimeout(async () => {
+          await api(year, month);
+        }, 2000);
+      }
+    </script>
+    <!-- ---- -->
+    <script>
+      async function api(year, month) {
+        const api_url = `/v1?year=${year}&month=${month}`;
+        async function getData(url) {
+          const response = await fetch(url);
+          const data = await response.json();
+          if (response) {
+            hideloader();
+          }
+          show(data);
+        }
+        getData(api_url);
+        function hideloader() {
+          document.getElementById("loading").style.display = "none";
+        }
+        function show(data) {
+          const dat = data.data.days;
+          const fd = dat.filter((i) => i.date === 1);
+          const fid = fd[0].wdId;
+          const container = document.getElementById("mcal");
+          container.innerHTML = "";
+          const grid = document.createElement("div");
+          grid.classList.add("mcal");
+          container.appendChild(grid);
+          // week days
+          const wkda = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+          for (let i = 0; i < 7; i++) {
+            const dwek = document.createElement("div");
+            dwek.classList.add("day");
+            dwek.textContent = wkda[i];
+            grid.appendChild(dwek);
+          }
+
+          const blanks = (fid + 6) % 7;
+
+          for (let i = 0; i < blanks; i++) {
+            const blank = document.createElement("div");
+            blank.classList.add("day");
+            grid.appendChild(blank);
+          }
+          const dim = data.data.dim;
+          for (let i = 1; i <= dim; i++) {
+            const dc = document.createElement("div");
+            dc.classList.add("day");
+            dc.textContent = i;
+            grid.appendChild(dc);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
