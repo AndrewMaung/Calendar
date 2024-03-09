@@ -1,0 +1,50 @@
+@import url("https://cdn.jsdelivr.net/gh/phothinmg/burmesecss@main/dist/fonts/umoe/umoe.css");
+
+* {
+  margin: 0;
+}
+body{
+  font-family: umoe !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+}
+body > *{
+  grid-template-areas: 2;
+}
+input {
+  max-width: 160px;
+  text-align: center;
+}
+small {
+  margin-top: 10px;
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid goldenrod;
+}
+.mcal {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  padding: 26px;
+  border-radius: 7px;
+}
+.day {
+  padding: 10px;
+  border: 1px solid goldenrod;
+  text-align: center;
+}
+.sunday {
+  color: rgb(172, 66, 136);
+}
+.active {
+  color: lime;
+}

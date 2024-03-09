@@ -1,0 +1,75 @@
+@import url("https://cdn.jsdelivr.net/gh/phothinmg/burmesecss@main/dist/fonts/umoe/umoe.css");
+
+* {
+  margin: 0;
+}
+body {
+  font-family: umoe !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+body > * {
+  grid-template-areas: 2;
+}
+
+/* Top */
+
+.top{
+  text-align: center;
+  padding: 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border: 1px solid goldenrod;
+  border-radius: 15px 50px; 
+}
+
+.top > h1 {
+
+  text-shadow: 2px 2px 4px #000000;
+}
+
+/* --- header ---- */
+.form {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid goldenrod;
+}
+
+.form > input, select {
+  max-width: 160px;
+  text-align: center;
+  font-size: medium;
+  max-height: min-content;
+}
+
+.form > small {
+  font-size: medium;
+  margin-top: 10px;
+}
+
+/* ----------------------------------------- */
+.mcal {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  padding: 26px;
+  border-radius: 7px;
+}
+.day {
+  padding: 10px;
+  border: 1px solid goldenrod;
+  text-align: center;
+}
+.sunday {
+  color: rgb(172, 66, 136);
+}
+.active {
+  color: lime;
+}
+
+/* -------------- */

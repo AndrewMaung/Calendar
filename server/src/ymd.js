@@ -126,7 +126,6 @@ const weekDaysArray = [
 const monthObject = (year, month) => {
   // Get the number of days in each month of the specified year
   const dimArray = getDaysInMonths(year);
-
   // Create an array of objects representing each month
   const mda = dimArray.slice(1).map((days, index) => ({
     id: index + 1,
